@@ -4,18 +4,14 @@ import numpy as np
 
 
 def load_face_encoding(image_path):
-    """
-    Load an image and return its facial encoding.
-    """
+    
     image = face_recognition.load_image_file(image_path)
     encodings = face_recognition.face_encodings(image)
     return encodings[0] if encodings else None
 
 
 def detect_and_recognize_faces(target_image_path, known_encoding, known_label="Known Person"):
-    """
-    Detect and recognize faces in the target image using a known face encoding.
-    """
+
     image = face_recognition.load_image_file(target_image_path)
     face_locations = face_recognition.face_locations(image)
     face_encodings = face_recognition.face_encodings(image, face_locations)
@@ -23,11 +19,11 @@ def detect_and_recognize_faces(target_image_path, known_encoding, known_label="K
     for location, encoding in zip(face_locations, face_encodings):
         top, right, bottom, left = location
 
-        # Compare detected face with the known encoding
+    
         is_match = face_recognition.compare_faces([known_encoding], encoding)[0]
         label = known_label if is_match else "Unknown"
 
-        # Draw bounding box and label
+        
         cv2.rectangle(image, (left, top), (right, bottom), (0, 255, 0), 2)
         cv2.putText(image, label, (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
 
