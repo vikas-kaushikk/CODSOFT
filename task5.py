@@ -42,7 +42,7 @@ def main():
 
     result_image = detect_and_recognize_faces(test_image_path, known_encoding)
 
-    # Convert color space for OpenCV display
+    
     result_bgr = cv2.cvtColor(result_image, cv2.COLOR_RGB2BGR)
 
     cv2.imshow("Face Recognition Result", result_bgr)
