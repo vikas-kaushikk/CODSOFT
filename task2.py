@@ -3,10 +3,8 @@ import sys
 import math
 import copy
 
-# Initialize Pygame
 pygame.init()
 
-# Constants
 WIDTH, HEIGHT = 300, 300
 LINE_WIDTH = 5
 BOARD_ROWS, BOARD_COLS = 3, 3
@@ -16,26 +14,22 @@ CIRCLE_WIDTH = 15
 CROSS_WIDTH = 20
 SPACE = SQUARE_SIZE // 4
 
-# Colors
+
 BG_COLOR = (28, 170, 156)
 LINE_COLOR = (23, 145, 135)
 CIRCLE_COLOR = (239, 231, 200)
 CROSS_COLOR = (66, 66, 66)
 
-# Pygame screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Tic Tac Toe - AI")
 screen.fill(BG_COLOR)
 
-# Board
 board = [[None for _ in range(BOARD_COLS)] for _ in range(BOARD_ROWS)]
 
-# Draw grid lines
 def draw_lines():
-    # Horizontal
     for row in range(1, BOARD_ROWS):
         pygame.draw.line(screen, LINE_COLOR, (0, row * SQUARE_SIZE), (WIDTH, row * SQUARE_SIZE), LINE_WIDTH)
-    # Vertical
+
     for col in range(1, BOARD_COLS):
         pygame.draw.line(screen, LINE_COLOR, (col * SQUARE_SIZE, 0), (col * SQUARE_SIZE, HEIGHT), LINE_WIDTH)
 
@@ -43,7 +37,7 @@ def draw_figures():
     for row in range(BOARD_ROWS):
         for col in range(BOARD_COLS):
             if board[row][col] == 'X':
-                # Draw cross
+            
                 start_desc = (col * SQUARE_SIZE + SPACE, row * SQUARE_SIZE + SPACE)
                 end_desc = (col * SQUARE_SIZE + SQUARE_SIZE - SPACE, row * SQUARE_SIZE + SQUARE_SIZE - SPACE)
                 pygame.draw.line(screen, CROSS_COLOR, start_desc, end_desc, CROSS_WIDTH)
@@ -132,10 +126,10 @@ def restart_game():
     game_over = False
     player_turn = True
 
-# Start Game
+# game start
 draw_lines()
 game_over = False
-player_turn = True  # You start first
+player_turn = True 
 
 while True:
     for event in pygame.event.get():
